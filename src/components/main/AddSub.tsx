@@ -16,6 +16,7 @@ const ModalWrapper = styled.div`
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background: #fff;
+	border-radius: 10px;
 `;
 const Title = styled.h2`
 	margin-bottom: 0.5rem;
@@ -55,7 +56,7 @@ const AddSub = () => {
 			setError("The subject already exists.");
 			return;
 		}
-		dispatch({ type: "CREATE", title: name });
+		dispatch({ type: "ADD_SUB", title: name });
 		onModalClose();
 	};
 
@@ -76,9 +77,9 @@ const AddSub = () => {
 					helperText={error}
 					id="outlined-basic"
 					label="Subject"
-					onChange={(v) => {
+					onChange={(e) => {
 						setError(" ");
-						setName(v.target.value);
+						setName(e.target.value);
 					}}
 					onKeyDown={(e) => onEnter(e)}
 					inputRef={inputRef}

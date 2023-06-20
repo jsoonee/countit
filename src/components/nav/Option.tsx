@@ -4,6 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import LabelIcon from "@mui/icons-material/Label";
 import { ListContext } from "../../context/ListContext";
@@ -19,7 +20,7 @@ const Option = () => {
 		important = curr.items.reduce((acc, item) => (item.star ? acc++ : acc), 0);
 	return (
 		<>
-			{subject ? (
+			{subject && (
 				<>
 					<h2>{subject.toUpperCase()}</h2>
 					<List>
@@ -41,8 +42,9 @@ const Option = () => {
 							</ListItemButton>
 						</ListItem>
 					</List>
+					<Divider />
 				</>
-			) : null}
+			)}
 		</>
 	);
 };

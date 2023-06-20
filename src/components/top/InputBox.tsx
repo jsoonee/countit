@@ -15,7 +15,7 @@ const InputBox = () => {
 			?.items.some((el) => el.name === item);
 		exi
 			? dispatch({ type: "INCREMENT", title: subject, name: item })
-			: dispatch({ type: "ADD", title: subject, name: item });
+			: dispatch({ type: "ADD_ITEM", title: subject, name: item });
 	};
 
 	console.log(subject);

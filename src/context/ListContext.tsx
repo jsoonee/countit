@@ -23,6 +23,7 @@ interface IAction {
 	type: string;
 	title: string;
 	name?: string;
+	newName?: string;
 }
 
 interface IReducer {
@@ -31,20 +32,20 @@ interface IReducer {
 }
 
 const reducer = (state: IList[], action: IAction): IList[] => {
-	let now = new Date();
+	const now = new Date();
 	switch (action.type) {
-		case "CREATE":
+		case "ADD_SUB":
 			return [
-				...state,
 				{
-					id: state.length,
+					id: state.length + 1,
 					title: action.title,
 					items: [],
 					created: now,
 					updated: now,
 				},
+				...state,
 			];
-		case "ADD":
+		case "ADD_ITEM":
 			return state.map((li) =>
 				action.name && li.title === action.title
 					? {
@@ -65,6 +66,14 @@ const reducer = (state: IList[], action: IAction): IList[] => {
 					  }
 					: li
 			);
+		case "RENAME_SUB":
+			return state.map((li) =>
+				action.newName && li.title === action.title
+					? { ...li, title: action.newName }
+					: li
+			);
+		case "DELETE_SUB":
+			return state.filter((li) => li.title !== action.title);
 		case "INCREMENT":
 			return state.map((li) =>
 				action.name && li.title === action.title
